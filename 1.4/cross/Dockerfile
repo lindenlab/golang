@@ -1,4 +1,4 @@
-FROM golang:1.4.2
+FROM registry.docker/golang:1.4.2
 
 # see https://golang.org/doc/install/source#environment
 # see also http://build.golang.org/
