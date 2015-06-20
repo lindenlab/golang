@@ -1,7 +1,11 @@
-FROM registry.docker/golang
+FROM registry.docker/golang:1.4.2
 
 RUN apt-get update && apt-get install -y \
             --no-install-recommends \
+            autogen \
+            autoconf \
+            automake \
+            bison \
             build-essential \
             libpcre3-dev \
             openssl \
@@ -11,5 +15,8 @@ RUN apt-get update && apt-get install -y \
             uuid \
             uuid-dev 
 
-RUN mkdir /src && cd /src && wget http://sourceforge.net/projects/swig/files/swig/swig-3.0.5/swig-3.0.5.tar.gz && \
-	tar -xvf swig-3.0.5.tar.gz && cd swig-3.0.5 && ./configure && make && make install
+RUN mkdir /src
+COPY swig-3.0.6.tar.gz /src/
+RUN cd /src && tar -xvf swig-3.0.6.tar.gz && cd swig-3.0.6 && \
+    ./autogen.sh && ./configure --prefix=/usr && make && \
+    make install-main && make install-lib && rm -rf /src
