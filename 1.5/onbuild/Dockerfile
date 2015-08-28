@@ -1,4 +1,4 @@
-FROM registry.docker/golang:1.4
+FROM registry.docker/golang:1.5
 
 RUN mkdir -p /go/src/app
 WORKDIR /go/src/app

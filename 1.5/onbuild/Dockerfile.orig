@@ -1,4 +1,8 @@
+<<<<<<< HEAD:1.3/onbuild/Dockerfile
 FROM registry.docker/golang:1.3.3
+=======
+FROM golang:1.5
+>>>>>>> 84ec65b7edeb4087beba56c9db336d9360084219:1.5/onbuild/Dockerfile
 
 RUN mkdir -p /go/src/app
 WORKDIR /go/src/app
