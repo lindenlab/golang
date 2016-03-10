@@ -3,7 +3,7 @@ set -e
 
 declare -A aliases
 aliases=(
-	[1.5]='1 latest'
+	[1.6]='1 latest'
 )
 
 cd "$(dirname "$(readlink -f "$BASH_SOURCE")")"
@@ -26,7 +26,7 @@ for version in "${versions[@]}"; do
 		echo "$va: ${url}@${commit} $version"
 	done
 	
-	for variant in onbuild cross wheezy; do
+	for variant in onbuild cross wheezy alpine; do
 		[ -f "$version/$variant/Dockerfile" ] || continue
 		commit="$(cd "$version/$variant" && git log -1 --format='format:%H' -- Dockerfile $(awk 'toupper($1) == "COPY" { for (i = 2; i < NF; i++) { print $i } }' Dockerfile))"
 		echo
