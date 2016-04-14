@@ -8,6 +8,8 @@ env:
   - VERSION=1.5 VARIANT=
   - VERSION=1.5 VARIANT=wheezy
   - VERSION=1.5 VARIANT=alpine
+  - VERSION=1.4 VARIANT=
+  - VERSION=1.4 VARIANT=wheezy
 
 install:
   - git clone https://github.com/docker-library/official-images.git ~/official-images
