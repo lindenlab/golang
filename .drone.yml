@@ -2,16 +2,16 @@ image: registry.docker/buildpack-deps:scm
 volumes:
   - /var/run/docker.sock
 script:
-  - docker build -t registry.docker/golang:1.4.2 1.4
-  - docker tag -f registry.docker/golang:1.4.2 registry.docker/golang:1.4
-  - docker build -t registry.docker/golang:1.4.2-onbuild 1.4/onbuild
-  - docker tag -f registry.docker/golang:1.4.2-onbuild registry.docker/golang:1.4-onbuild
-  - docker build -t registry.docker/golang:1.4.2-cross 1.4/cross
-  - docker tag -f registry.docker/golang:1.4.2-cross registry.docker/golang:1.4-cross
-  - docker build -t registry.docker/golang:1.4.2-wheezy 1.4/wheezy
-  - docker tag -f registry.docker/golang:1.4.2-wheezy registry.docker/golang:1.4-wheezy
-  - docker build -t registry.docker/golang:1.4.2-swig 1.4/swig
-  - docker tag -f registry.docker/golang:1.4.2-swig registry.docker/golang:1.4-swig
+  - docker build -t registry.docker/golang:1.4.3 1.4
+  - docker tag -f registry.docker/golang:1.4.3 registry.docker/golang:1.4
+  - docker build -t registry.docker/golang:1.4.3-onbuild 1.4/onbuild
+  - docker tag -f registry.docker/golang:1.4.3-onbuild registry.docker/golang:1.4-onbuild
+  - docker build -t registry.docker/golang:1.4.3-cross 1.4/cross
+  - docker tag -f registry.docker/golang:1.4.3-cross registry.docker/golang:1.4-cross
+  - docker build -t registry.docker/golang:1.4.3-wheezy 1.4/wheezy
+  - docker tag -f registry.docker/golang:1.4.3-wheezy registry.docker/golang:1.4-wheezy
+  - docker build -t registry.docker/golang:1.4.3-swig 1.4/swig
+  - docker tag -f registry.docker/golang:1.4.3-swig registry.docker/golang:1.4-swig
 
   - docker build -t registry.docker/golang:1.5.4 1.5
   - docker tag -f registry.docker/golang:1.5.4 registry.docker/golang:1.5
