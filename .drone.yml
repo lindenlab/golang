@@ -29,14 +29,14 @@ script:
   - docker tag -f registry.docker/golang:1.5.4-swig registry.docker/golang:1-swig
   - docker tag -f registry.docker/golang:1.5.4-swig registry.docker/golang:swig
 
-  - docker build -t registry.docker/golang:1.6.1 1.6
-  - docker tag -f registry.docker/golang:1.6.1 registry.docker/golang:1.6
+  - docker build -t registry.docker/golang:1.6.2 1.6
+  - docker tag -f registry.docker/golang:1.6.2 registry.docker/golang:1.6
 
-  - docker build -t registry.docker/golang:1.6.1-onbuild 1.6/onbuild
-  - docker tag -f registry.docker/golang:1.6.1-onbuild registry.docker/golang:1.6-onbuild
+  - docker build -t registry.docker/golang:1.6.2-onbuild 1.6/onbuild
+  - docker tag -f registry.docker/golang:1.6.2-onbuild registry.docker/golang:1.6-onbuild
 
-  - docker build -t registry.docker/golang:1.6.1-swig 1.6/swig
-  - docker tag -f registry.docker/golang:1.6.1-swig registry.docker/golang:1.6-swig
+  - docker build -t registry.docker/golang:1.6.2-swig 1.6/swig
+  - docker tag -f registry.docker/golang:1.6.2-swig registry.docker/golang:1.6-swig
 
   - docker push registry.docker/golang
 
