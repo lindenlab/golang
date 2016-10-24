@@ -1,4 +1,4 @@
-FROM registry.docker/golang:1.7.1
+FROM registry.docker/golang:1.7.3
 
 RUN apt-get update && apt-get install -y \
             --no-install-recommends \
