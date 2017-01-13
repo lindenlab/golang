@@ -17,6 +17,6 @@ RUN apt-get update && apt-get install -y \
 
 RUN mkdir /src
 COPY swig-3.0.11.tar.gz /src/
-RUN cd /src && tar -xvf swig-3.0.10.tar.gz && cd swig-3.0.10 && \
+RUN cd /src && tar -xvf swig-3.0.11.tar.gz && cd swig-3.0.11 && \
     ./autogen.sh && ./configure --prefix=/usr && make && \
     make install-main && make install-lib && rm -rf /src
