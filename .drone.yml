@@ -52,13 +52,13 @@ build:
           docker tag -f registry.docker/golang:$GO_VERSION_PATCH registry.docker/golang:latest;
         fi
       fi
-    - docker push registry.docker/golang
+      #    - docker push registry.docker/golang
 
 matrix:
   GO_VERSION:
     - 1.7
-    - 1.6
-    - 1.5
+    # - 1.6
+    # - 1.5
     # - 1.4
   GO_VERSION_LATEST:
     - 1.5
