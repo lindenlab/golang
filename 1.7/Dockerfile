@@ -16,7 +16,7 @@ ENV GOLANG_DOWNLOAD_SHA256 4c189111e9ba651a2bb3ee868aa881fab36b2f2da3409e80885ca
 RUN curl -fsSL "$GOLANG_DOWNLOAD_URL" -o golang.tar.gz \
 	&& echo "$GOLANG_DOWNLOAD_SHA256  golang.tar.gz" | sha256sum -c - \
 	&& tar -C /usr/local -xzf golang.tar.gz \
-	&& rm golang.tar.gz
+	&& rm golang.tar.gz \
 	&& cd /usr/src/go/src && ./make.bash --noclean 2>&1
 
 ENV GOPATH /go
