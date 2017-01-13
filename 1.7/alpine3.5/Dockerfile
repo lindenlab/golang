@@ -1,10 +1,10 @@
-FROM alpine:3.4
+FROM alpine:3.5
 
 RUN apk add --no-cache ca-certificates
 
-ENV GOLANG_VERSION 1.6.4
+ENV GOLANG_VERSION 1.7.4
 ENV GOLANG_SRC_URL https://golang.org/dl/go$GOLANG_VERSION.src.tar.gz
-ENV GOLANG_SRC_SHA256 8796cc48217b59595832aa9de6db45f58706dae68c9c7fbbd78c9fdbe3cd9032
+ENV GOLANG_SRC_SHA256 4c189111e9ba651a2bb3ee868aa881fab36b2f2da3409e80885ca758a6b614cc
 
 # https://golang.org/issue/14851
 COPY no-pic.patch /
