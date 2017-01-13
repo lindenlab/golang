@@ -16,9 +16,9 @@ build:
       elif [[ "x$GO_VERSION" == "x1.5" ]]; then
         export GO_VERSION_PATCH="1.5.4";
       elif [[ "x$GO_VERSION" == "x1.6" ]]; then
-        export GO_VERSION_PATCH="1.6.3";
+        export GO_VERSION_PATCH="1.6.4";
       elif [[ "x$GO_VERSION" == "x1.7" ]]; then
-        export GO_VERSION_PATCH="1.7.3";
+        export GO_VERSION_PATCH="1.7.4";
       fi
 
     - >
