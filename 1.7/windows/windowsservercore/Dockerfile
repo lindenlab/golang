@@ -1,12 +1,13 @@
 FROM microsoft/windowsservercore
 
-SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop';"]
+# $ProgressPreference: https://github.com/PowerShell/PowerShell/issues/2138#issuecomment-251261324
+SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
 # install Git (especially for "go get")
-ENV GIT_VERSION 2.9.2
+ENV GIT_VERSION 2.11.0
 ENV GIT_TAG v${GIT_VERSION}.windows.1
 ENV GIT_DOWNLOAD_URL https://github.com/git-for-windows/git/releases/download/${GIT_TAG}/Git-${GIT_VERSION}-64-bit.exe
-ENV GIT_DOWNLOAD_SHA256 006d971bcbe73cc8d841a100a4eb20d22e135142bf5b0f2120722fd420e166e5
+ENV GIT_DOWNLOAD_SHA256 fd1937ea8468461d35d9cabfcdd2daa3a74509dc9213c43c2b9615e8f0b85086
 # steps inspired by "chcolateyInstall.ps1" from "git.install" (https://chocolatey.org/packages/git.install)
 RUN Write-Host ('Downloading {0} ...' -f $env:GIT_DOWNLOAD_URL); \
 	Invoke-WebRequest -Uri $env:GIT_DOWNLOAD_URL -OutFile 'git.exe'; \
@@ -60,9 +61,9 @@ RUN $newPath = ('{0}\bin;C:\go\bin;{1}' -f $env:GOPATH, $env:PATH); \
 	[Environment]::SetEnvironmentVariable('PATH', $newPath, [EnvironmentVariableTarget]::Machine);
 # doing this first to share cache across versions more aggressively
 
-ENV GOLANG_VERSION 1.7.3
+ENV GOLANG_VERSION 1.7.4
 ENV GOLANG_DOWNLOAD_URL https://golang.org/dl/go$GOLANG_VERSION.windows-amd64.zip
-ENV GOLANG_DOWNLOAD_SHA256 9fe41313b97e2a6a703f5ae22938c7d9ac4336a128b522376c224ba97e8c7f01
+ENV GOLANG_DOWNLOAD_SHA256 36739164fed38a6da908813aba48d72fb22fea923de5611a85a81135b7cfceb9
 
 RUN Write-Host ('Downloading {0} ...' -f $env:GOLANG_DOWNLOAD_URL); \
 	Invoke-WebRequest -Uri $env:GOLANG_DOWNLOAD_URL -OutFile 'go.zip'; \

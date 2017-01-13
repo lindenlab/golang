@@ -1,15 +1,13 @@
-FROM registry.docker/alpine:3.4
+FROM alpine:3.5
 
 RUN apk add --no-cache ca-certificates
 
-ENV GOLANG_VERSION 1.7.4
+ENV GOLANG_VERSION 1.8rc1
 ENV GOLANG_SRC_URL https://golang.org/dl/go$GOLANG_VERSION.src.tar.gz
-ENV GOLANG_SRC_SHA256 4c189111e9ba651a2bb3ee868aa881fab36b2f2da3409e80885ca758a6b614cc
+ENV GOLANG_SRC_SHA256 aa25758b754369018c507bbf646dda7839a41ffe4fd85a014c9704d7d8720dda
 
 # https://golang.org/issue/14851
 COPY no-pic.patch /
-# https://golang.org/issue/17847
-COPY 17847.patch /
 
 RUN set -ex \
 	&& apk add --no-cache --virtual .build-deps \
@@ -27,7 +25,6 @@ RUN set -ex \
 	&& rm golang.tar.gz \
 	&& cd /usr/local/go/src \
 	&& patch -p2 -i /no-pic.patch \
-	&& patch -p2 -i /17847.patch \
 	&& ./make.bash \
 	\
 	&& rm -rf /*.patch \
