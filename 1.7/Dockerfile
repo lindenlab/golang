@@ -7,7 +7,7 @@ ENV GOLANG_DOWNLOAD_URL https://golang.org/dl/go$GOLANG_VERSION.src.tar.gz
 ENV GOLANG_DOWNLOAD_SHA256 4c189111e9ba651a2bb3ee868aa881fab36b2f2da3409e80885ca758a6b614cc
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-	go \
+	golang \
 	make \
 	pkg-config \
 	&& curl -fsSL "$GOLANG_DOWNLOAD_URL" -o golang.tar.gz \
@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 	&& rm golang.tar.gz \
 	&& ls -l /usr && ls -l / \
 	&& cd /usr/local/go/src && ./make.bash --noclean 2>&1 \
-	&& apt-get remove go \
+	&& apt-get autoremove golang \
 	&& rm -rf /var/lib/apt/lists/*
 
 ENV GOPATH /go
