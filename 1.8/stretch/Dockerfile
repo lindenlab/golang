@@ -1,4 +1,4 @@
-FROM buildpack-deps:stretch-scm
+FROM registry.docker/buildpack-deps:stretch-scm
 
 # gcc for cgo
 RUN apt-get update && apt-get install -y --no-install-recommends \
