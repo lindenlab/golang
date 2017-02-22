@@ -3,12 +3,12 @@ build:
   volumes:
     - /var/run/docker.sock:/var/run/docker.sock
   commands:
-    - >
-      if [[ "x$GO_VERSION" == "x1.5" ]] || [[ "x$GO_VERSION" == "x1.6" ]]; then
-        if [[ "x$PLATFORM" == "xcross" ]]; then
-          export SKIP="true";
-        fi
-      fi
+      #    - >
+      #      if [[ "x$GO_VERSION" == "x1.5" ]] || [[ "x$GO_VERSION" == "x1.6" ]]; then
+      #        if [[ "x$PLATFORM" == "xcross" ]]; then
+      #          export SKIP="true";
+      #        fi
+      #      fi
 
     - >
       if [[ "x$GO_VERSION" == "x1.4" ]]; then
@@ -35,14 +35,14 @@ build:
         docker tag -f registry.docker/golang:$GO_VERSION_PATCH registry.docker/golang:$GO_VERSION
       fi
 
-    - >
-      if [[ "x$SKIP" != "xtrue" ]]; then
-        export DIR="$GO_VERSION/$PLATFORM";
-        export TAG="$GO_VERSION-$PLATFORM";
-        echo "Building golang version $GO_VERSION-$PLATFORM from directory $GO_VERSION/$PLATFORM";
-        docker build -t registry.docker/golang:$GO_VERSION_PATCH $DIR
-        docker tag -f registry.docker/golang:$GO_VERSION_PATCH registry.docker/golang:$TAG
-      fi
+      #    - >
+      #      if [[ "x$SKIP" != "xtrue" ]]; then
+      #        export DIR="$GO_VERSION/$PLATFORM";
+      #        export TAG="$GO_VERSION-$PLATFORM";
+      #        echo "Building golang version $GO_VERSION-$PLATFORM from directory $GO_VERSION/$PLATFORM";
+      #        docker build -t registry.docker/golang:$GO_VERSION_PATCH $DIR
+      #        docker tag -f registry.docker/golang:$GO_VERSION_PATCH registry.docker/golang:$TAG
+      #      fi
 
     - >
       if [[ "x$SKIP" != "xtrue" ]] && [[ "x$GO_VERSION" == "x$GO_VERSION_LATEST" ]]; then
@@ -60,13 +60,13 @@ matrix:
   GO_VERSION:
     - 1.8
     - 1.7
-    - 1.6
-    - 1.5
+    # - 1.6
+    # - 1.5
     # - 1.4
   GO_VERSION_LATEST:
     - 1.5
   PLATFORM:
-    - swig
+    - golang
     # - cross
     # - onbuild
     # - wheezy
