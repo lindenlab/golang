@@ -1,5 +1,5 @@
 build:
-  image: registry.docker/golang:1.5
+  image: registry.docker/golang:1.7
   volumes:
     - /var/run/docker.sock:/var/run/docker.sock
   commands:
@@ -42,19 +42,21 @@ build:
         echo "Building golang version $GO_VERSION-$PLATFORM from directory $GO_VERSION/$PLATFORM";
         docker build -t registry.docker/golang:$GO_VERSION_PATCH $DIR
         docker tag -f registry.docker/golang:$GO_VERSION_PATCH registry.docker/golang:$TAG
+        docker tag -f registry.docker/golang:$GO_VERSION_PATCH registry.docker/golang:$GO_VERSION
+        docker push registry.docker/golang:$GO_VERSION
       fi
 
-    - >
-      if [[ "x$SKIP" != "xtrue" ]] && [[ "x$GO_VERSION" == "x$GO_VERSION_LATEST" ]]; then
-        export MAJOR=`echo $GO_VERSION | cut -d"." -f1`;
-        docker tag -f registry.docker/golang:$GO_VERSION_PATCH registry.docker/golang:$PLATFORM;
-        docker tag -f registry.docker/golang:$GO_VERSION_PATCH registry.docker/golang:$MAJOR-$PLATFORM;
-        if [[ "x$PLATFORM" == "xswig" ]]; then
-          docker tag -f registry.docker/golang:$GO_VERSION_PATCH registry.docker/golang:$MAJOR;
-          docker tag -f registry.docker/golang:$GO_VERSION_PATCH registry.docker/golang:latest;
-        fi
-      fi
-    - docker push registry.docker/golang
+      #- >
+      # if [[ "x$SKIP" != "xtrue" ]] && [[ "x$GO_VERSION" == "x$GO_VERSION_LATEST" ]]; then
+      #  export MAJOR=`echo $GO_VERSION | cut -d"." -f1`;
+      #  docker tag -f registry.docker/golang:$GO_VERSION_PATCH registry.docker/golang:$PLATFORM;
+      #  docker tag -f registry.docker/golang:$GO_VERSION_PATCH registry.docker/golang:$MAJOR-$PLATFORM;
+      #  if [[ "x$PLATFORM" == "xswig" ]]; then
+      #    docker tag -f registry.docker/golang:$GO_VERSION_PATCH registry.docker/golang:$MAJOR;
+      #    docker tag -f registry.docker/golang:$GO_VERSION_PATCH registry.docker/golang:latest;
+      #  fi
+      #fi
+      #- docker push registry.docker/golang
 
 matrix:
   GO_VERSION:
@@ -64,8 +66,7 @@ matrix:
     # - 1.5
     # - 1.4
   GO_VERSION_LATEST:
-    # keeping this not equvalent to any GO_VERSIONs ABOVE for now...
-    - 1.5
+    - 1.7
   PLATFORM:
     - golang
     # - cross
