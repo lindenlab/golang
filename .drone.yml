@@ -1,5 +1,5 @@
 build:
-  image: registry.docker/golang:1.7
+  image: registry.docker/golang:1.5
   volumes:
     - /var/run/docker.sock:/var/run/docker.sock
   commands:
@@ -43,7 +43,7 @@ build:
         docker build -t registry.docker/golang:$GO_VERSION_PATCH $DIR
         docker tag -f registry.docker/golang:$GO_VERSION_PATCH registry.docker/golang:$TAG
         docker tag -f registry.docker/golang:$GO_VERSION_PATCH registry.docker/golang:$GO_VERSION
-        docker push registry.docker/golang
+        docker push registry.docker/golang:$GO_VERSION
       fi
 
       #- >
