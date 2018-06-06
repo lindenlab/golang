@@ -31,7 +31,7 @@ build:
     - >
       if [[ "x$SKIP" != "xtrue" ]] && [[ "x$PLATFORM" == "xswig" ]]; then
         echo "Building golang version $GO_VERSION using patch version $GO_VERSION_PATCH";
-        docker build -t registry.docker/golang:$GO_VERSION_PATCH $GO_VERSION
+        docker build --no-cache -t registry.docker/golang:$GO_VERSION_PATCH $GO_VERSION
         docker tag -f registry.docker/golang:$GO_VERSION_PATCH registry.docker/golang:$GO_VERSION
       fi
 
