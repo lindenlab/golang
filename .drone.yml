@@ -1,5 +1,13 @@
 build:
-  image: registry.docker/golang:1.7
+  # NOTE: because we're using an older golang image here, it has an older docker version in it
+  # which allows docker tag -f (emphasis on the -f force flag)
+  # when we upgrade registry.docker and move the image below to newer, the -f flag is deprecated and 
+  # will error out with:
+  #     unknown shorthand flag: 'f' in -f
+  #     See 'docker tag --help'.
+  # OR if rebuilding on newer docker revision
+  #     Error response from daemon: Conflict: Tag testing-1.7-golang is already set to image
+  image: registry.docker/golang:1.5
   volumes:
     - /var/run/docker.sock:/var/run/docker.sock
   commands:
@@ -60,8 +68,8 @@ build:
 
 matrix:
   GO_VERSION:
-    - 1.7
     # - 1.8
+    - 1.7
     # - 1.6
     # - 1.5
     # - 1.4
