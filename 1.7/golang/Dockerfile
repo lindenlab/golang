@@ -6,10 +6,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 		gcc \
 		libc6-dev \
 		make \
-		docker \
 		libapparmor1 \
 		pkg-config \
 	&& rm -rf /var/lib/apt/lists/*
+
+# pinned to linden/jenkins built docker
+RUN curl -k https://int.infra-jenkins.build.sansar.io/job/build-package-docker-engine-1.12/lastSuccessfulBuild/artifact/repo/docker-engine_1.12.6~linden1-0~debian-jessie_amd64.deb -o docker-engine_1.12.6~linden1-0~debian-jessie_amd64.deb \
+    && dpkg -i -y --no-install-recommends docker-engine_1.12.6~linden1-0~debian-jessie_amd64.deb \
+    && rm docker-engine_1.12.6~linden1-0~debian-jessie_amd64.deb
 
 ENV GOLANG_VERSION 1.7.5
 ENV GOLANG_DOWNLOAD_URL https://golang.org/dl/go$GOLANG_VERSION.linux-amd64.tar.gz
