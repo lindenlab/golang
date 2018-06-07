@@ -13,6 +13,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 		pkg-config \
 	&& rm -rf /var/lib/apt/lists/*
 
+
+ENV DOCKER_API_VERSION 1.20
 # pinned to linden/jenkins built docker
 RUN curl -k https://int.infra-jenkins.build.sansar.io/job/build-package-docker-engine-1.12/lastSuccessfulBuild/artifact/repo/docker-engine_1.12.6~linden1-0~debian-jessie_amd64.deb -o docker-engine_1.12.6~linden1-0~debian-jessie_amd64.deb \
     && dpkg -i docker-engine_1.12.6~linden1-0~debian-jessie_amd64.deb \
