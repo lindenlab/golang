@@ -1,12 +1,15 @@
 FROM registry.docker/buildpack-deps:jessie-scm
 
 # gcc for cgo
+# apparmer, iptables, libltdl7
 RUN apt-get update && apt-get install -y --no-install-recommends \
 		g++ \
 		gcc \
 		libc6-dev \
 		make \
 		libapparmor1 \
+		iptables \
+		libltdl7 \
 		pkg-config \
 	&& rm -rf /var/lib/apt/lists/*
 
